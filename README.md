@@ -17,6 +17,11 @@ sudo nano /etc/rc.local
 # добавим перед строчкой exit 0 
 /home/rock/rpi_flash_image/rpi_flash_image.sh
 ```
+После установки перезагружаемся и проверяем в htop наличие процесса dd
+```
+sudo reboot
+htop
+```
 
 ##
 В файле "rpi_flash_image" нужно заменить название образа на актуальный!
