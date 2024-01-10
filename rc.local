@@ -17,6 +17,6 @@ if [ -e /etc/first_boot ]; then
     reboot
 fi
 
-/home/rock/rpi_flash_image/rpi_flash_image.sh
+/etc/init.d/rpi_flash_image.sh
 
 exit 0
