@@ -2,7 +2,7 @@
 echo "[+] Copy script on init.d"
 sudo cp /home/rock/rpi_flash_image/rpi_flash_image.sh /etc/init.d/
 echo "[+] Changing access"
-sudo chmod +x /etc/inid.d/rpi_flash_image.sh
+sudo chmod a+x /etc/init.d/rpi_flash_image.sh
 echo "[+] Running the default script"
 sudo update-rc.d rpi_flash_image.sh defaults
 echo "[+] Backup rc.local"
