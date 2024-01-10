@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
-echo "[+] Delete script from init.d"
-sudo rm /etc/init.d/rpi_flash_image.sh
-
 echo "[+] Running the disable script"
 sudo update-rc.d rpi_flash_image.sh disable
+
+echo "[+] Delete script from init.d"
+sudo rm /etc/init.d/rpi_flash_image.sh
 
 echo "[+] Remove rc.local"
 sudo rm /etc/rc.local

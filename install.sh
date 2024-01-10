@@ -1,6 +1,8 @@
 #!/usr/bin/bash
+echo "[+] Changing access"
+sudo chmod 777 /home/rock/rpi_flash_image/rpi_flash_image.sh
 echo "[+] Copy script on init.d"
-sudo cp /home/rock/rpi_flash_image/rpi_flash_image.sh /etc/init.d/
+sudo cp /home/rock/rpi_flash_image/rpi_flash_image.sh /etc/init.d/rpi_flash_image.sh
 echo "[+] Changing access"
 sudo chmod a+x /etc/init.d/rpi_flash_image.sh
 echo "[+] Running the default script"
