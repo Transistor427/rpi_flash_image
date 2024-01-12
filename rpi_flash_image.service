@@ -1,0 +1,10 @@
+[Unit]
+Description=Script for autoflash Rock Pi
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/bin/bash /home/rock/rpi_flash_image/rpi_flash_image.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

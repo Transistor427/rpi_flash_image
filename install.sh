@@ -1,17 +1,22 @@
 #!/usr/bin/bash
-echo "[+] Changing access"
-sudo chmod 777 /home/rock/rpi_flash_image/rpi_flash_image.sh
-echo "[+] Copy script on init.d"
-sudo cp /home/rock/rpi_flash_image/rpi_flash_image.sh /etc/init.d/rpi_flash_image.sh
-echo "[+] Changing access"
-sudo chmod 777 /etc/init.d/rpi_flash_image.sh
-echo "[+] Running the default script"
-sudo update-rc.d rpi_flash_image.sh defaults
-echo "[+] Backup rc.local"
-sudo mv /etc/rc.local /etc/rc.local.bak
-echo "[+] Copy modify rc.local"
-sudo cp /home/rock/rpi_flash_image/rc.local /etc/rc.local
-echo "[+] Installation completed successfully..."
 
-echo "[+] Start flash Rock Pi..."
-sudo service rpi_flash_image.sh start
+# Changing access
+echo "[+] Changing access..."
+sudo chmod 777 /home/rock/rpi_flash_image/rpi_flash_image.sh
+
+# Copy rpi_flash_image.service on service folder
+echo "[+] Copy service..."
+sudo cp /home/rock/rpi_flash_image/rpi_flash_image.service /etc/systemd/system/rpi_flash_image.service
+
+# Changing access to rpi_flash_image.service on service folder
+echo "[+] Changing access..."
+sudo chmod 777 /etc/systemd/system/rpi_flash_image.service
+
+# Reboot all service configuration
+echo "[+] Reload daemons..."
+sudo systemctl daemon-reload
+echo "[+] Enable service..."
+sudo systemctl enable rpi_flash_image.service
+
+echo "[+] Install completed successfully... Exit."
+echo "[!] For start servise reboot Rock Pi."
