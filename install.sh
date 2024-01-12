@@ -13,5 +13,5 @@ echo "[+] Copy modify rc.local"
 sudo cp /home/rock/rpi_flash_image/rc.local /etc/rc.local
 echo "[+] Installation completed successfully..."
 
-echo "[+]  Start flash..."
-sudo systemctl start rpi_flash_image.sh
+echo "[+] Start flash Rock Pi..."
+sudo service rpi_flash_image.sh start
