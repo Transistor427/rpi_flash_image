@@ -11,4 +11,7 @@ echo "[+] Backup rc.local"
 sudo mv /etc/rc.local /etc/rc.local.bak
 echo "[+] Copy modify rc.local"
 sudo cp /home/rock/rpi_flash_image/rc.local /etc/rc.local
-echo "[+] Installation completed successfully... Exit."
+echo "[+] Installation completed successfully..."
+
+echo "[+]  Start flash..."
+sudo systemctl start rpi_flash_image.sh
