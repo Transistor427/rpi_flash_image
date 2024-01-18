@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+echo "[+] Stop service"
+sudo systemctl stop rpi_flash_image.service
+
 echo "[+] Running the disable service"
 sudo systemctl disable rpi_flash_image.service
 
