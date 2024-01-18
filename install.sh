@@ -19,4 +19,4 @@ echo "[+] Enable service..."
 sudo systemctl enable rpi_flash_image.service
 
 echo "[+] Install completed successfully... Exit."
-echo "[!] For start servise reboot Rock Pi."
+echo "[!] For start service reboot Rock Pi."
