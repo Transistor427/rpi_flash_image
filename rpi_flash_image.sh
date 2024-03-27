@@ -2,9 +2,10 @@
 
 # Get image name
 
-IMAGE=`ls $HOME | grep "zip"`
+IMAGE=$(ls $HOME | grep "zip")
+IMG_NAME=$(echo $IMAGE | cut -d "." -f 1)
 
-if [ -f "$HOME/$IMAGE"]; then
+if [ -f "$HOME/$IMAGE" ];then
     # Message log
     echo "Image found: $IMAGE"
     echo "Image found: $IMAGE" > $HOME/rpi_flash_image/flash.log
@@ -12,7 +13,7 @@ if [ -f "$HOME/$IMAGE"]; then
     echo "Start write image"
 
     # Write image on rock pi
-    sudo unzip -p $HOME/$IMAGE $HOME/image.img | sudo dd of=/dev/mmcblk1 bs=8M status=progress
+    sudo unzip -p $HOME/$IMG_NAME.zip $HOME/$IMG_NAME.img | sudo dd of=/dev/mmcblk1 bs=8M status=progress
 
     # Message log
     echo "End write image" > $HOME/rpi_flash_image/flash.log
@@ -21,7 +22,7 @@ if [ -f "$HOME/$IMAGE"]; then
     # Shutdown system
     if grep -Fxq 'End write image' "$HOME/rpi_flash_image/flash.log"; then
         echo "Shutdown system"
-        sudo shutdown -h now
+        #sudo shutdown -h now
     else
         echo "[!] Error! Check log!"
     fi
