@@ -4,7 +4,7 @@
 
 IMAGE=`ls $HOME | grep "zip"`
 
-if test -f "$IMAGE"; then
+if test -f "$HOME/$IMAGE"; then
     # Message log
     echo "Image found: $IMAGE"
     echo "Image found: $IMAGE" > $HOME/rpi_flash_image/flash.log
