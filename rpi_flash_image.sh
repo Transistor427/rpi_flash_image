@@ -1,20 +1,30 @@
 #!/usr/bin/bash
 
 # Get image name
-image=`ls /home/rock/ | grep "img"`
 
-# Message log
-echo "Image name: $image"
-echo "Start write image" > /home/rock/rpi_flash_image/flash.log
-echo "Start write image"
+IMAGE=`ls $HOME | grep "zip"`
 
-# Write image on rock pi
-sudo dd if=/home/rock/$image of=/dev/mmcblk1 bs=8M status=progress
+if test -f "$IMAGE"; then
+    # Message log
+    echo "Image found: $IMAGE"
+    echo "Image found: $IMAGE" > $HOME/rpi_flash_image/flash.log
+    echo "Start write image" > $HOME/rpi_flash_image/flash.log
+    echo "Start write image"
 
-# Message log
-echo "End write image" > /home/rock/rpi_flash_image/flash.log
-echo "End write image"
+    # Write image on rock pi
+    sudo unzip -p $HOME/$IMAGE $HOME/image.img | sudo dd of=/dev/mmcblk1 bs=8M status=progress
 
-# Shutdown system
-echo "Shutdown system"
-sudo shutdown -h now
+    # Message log
+    echo "End write image" > $HOME/rpi_flash_image/flash.log
+    echo "End write image"
+
+    # Shutdown system
+    if grep -Fxq 'End write image' "$HOME/rpi_flash_image/flash.log"; then
+        echo "Shutdown system"
+        sudo shutdown -h now
+    else
+        echo "[!] Error! Check log!"
+    fi
+else
+    echo "[!] Image not found. System flashing canceled."
+fi
